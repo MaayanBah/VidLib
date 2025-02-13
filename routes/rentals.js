@@ -1,8 +1,8 @@
+const express = require("express");
 const router = express.Router();
 const { Rental, validate } = require("../models/rental");
 const { Movie } = require("../models/movie");
 const { Customer } = require("../models/customer");
-const express = require("express");
 
 router.get("/", async (req, res) => {
   const movies = await Rental.find().sort("-dateOut");
@@ -47,6 +47,8 @@ router.post("/", async (req, res) => {
 
   movie.numberInStock--;
   movie.save();
+
+  res.send(rental);
 });
 
 module.exports = router;
