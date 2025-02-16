@@ -1,9 +1,8 @@
-const jwt = require("jsonwebtoken");
-const config = require("config");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const _ = require("lodash");
+const auth = require("../middleware/auth");
 const { User, validate } = require("../models/user");
 
 router.post("/", async (req, res) => {
