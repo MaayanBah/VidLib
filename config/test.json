@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "testKey"
+  "jwtPrivateKey": "testKey",
+  "db": "mongodb://localhost/VidLib_tests"
 }
