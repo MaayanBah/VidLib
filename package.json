@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll --verbose --runInBand"
+    "test": "jest --watchAll --verbose --runInBand --coverage"
   },
   "author": "",
   "license": "ISC",
