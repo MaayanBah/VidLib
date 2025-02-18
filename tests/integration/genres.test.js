@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const request = require("supertest");
 const { Genre } = require("../../models/genre");
 const { User } = require("../../models/user");
@@ -8,8 +7,8 @@ describe("/api/genres", () => {
     server = require("../../index");
   });
   afterEach(async () => {
-    server.close();
     await Genre.deleteMany({});
+    await server.close();
   });
 
   describe("GET /", () => {
@@ -22,15 +21,14 @@ describe("/api/genres", () => {
       const res = await request(server).get("/api/genres");
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(2);
-      expect(res.body.some((g) => (g.name = "genre1"))).toBeTruthy();
-      expect(res.body.some((g) => (g.name = "genre2"))).toBeTruthy();
+      expect(res.body.some((g) => g.name === "genre1")).toBeTruthy();
+      expect(res.body.some((g) => g.name === "genre2")).toBeTruthy();
     });
   });
 
   describe("GET /:id", () => {
     it("Should return a genre i valid id is passed", async () => {
       const genre = new Genre({
-        _id: new mongoose.Types.ObjectId(),
         name: "genre1",
       });
 
@@ -52,7 +50,7 @@ describe("/api/genres", () => {
     let name;
 
     beforeEach(() => {
-      token = User().generateAuthToken();
+      token = new User().generateAuthToken();
       name = "*".repeat(10);
     });
 
