@@ -8,6 +8,21 @@ require("./startup/logging")();
 require("./startup/config")();
 require("./startup/validation")();
 
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Welcome to VidLib
+ *     description: The root endpoint of VidLib API.
+ *     responses:
+ *       200:
+ *         description: A welcome message
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: string
+ *               example: "VidLib"
+ */
 app.get("/", (req, res) => {
   res.send("VidLib");
 });
