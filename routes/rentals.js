@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
-const { Rental, validate } = require("../models/rental");
+const { Rental, validateRental } = require("../models/rental");
 const { Movie } = require("../models/movie");
 const { Customer } = require("../models/customer");
+const validate = require("../middleware/validate");
 
 router.get("/", async (req, res) => {
   const movies = await Rental.find().sort("-dateOut");
@@ -18,10 +19,7 @@ router.get("/:id", async (req, res) => {
   res.send(rental);
 });
 
-router.post("/", auth, async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-
+router.post("/", [auth, validate(validateRental)], async (req, res) => {
   const movie = await Movie.findById(req.body.movieId);
   if (!movie) return res.status(400).send("Invalid movie.");
 
