@@ -64,7 +64,7 @@ const swaggerDefinition = {
               _id: { type: "string" },
               name: { type: "string", example: "John Doe" },
               isGold: { type: "boolean", example: true },
-              phone: { type: "string", example: "1234567890" },
+              phone: { type: "string", example: "0533333333" },
             },
             required: ["name", "phone"],
           },
