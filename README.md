@@ -1,11 +1,5 @@
 # VidLib 📽️
 
-> [!NOTE]
->
-> ### 🚀 Project Status
->
-> This project will be launched into production soon 🔨
-
 ## Setup
 
 ### 1. Install MongoDB
